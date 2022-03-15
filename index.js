@@ -1,6 +1,5 @@
 const express = require('express');
 const path = require('path');
-const members = require('./person');
 const chat = require('./message')
 const mongoose = require('mongoose')
 mongoose.connect('mongodb+srv://Itsme:nirmit2212@cluster0.j6ww2.mongodb.net/myFirstDatabase?retryWrites=true&w=majority')
@@ -28,7 +27,7 @@ app.get('/', async(req,res)=>{
 
 
 //gets all members
-app.get('/api/members',(req,res)=> res.json(members));
+//app.get('/api/members',(req,res)=> res.json(members));
 //set static folder
 app.use(express.static(path.join(__dirname,'public')))
 
