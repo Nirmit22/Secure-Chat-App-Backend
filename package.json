@@ -1,0 +1,21 @@
+{
+  "name": "trial",
+  "version": "1.0.0",
+  "description": "trial",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index",
+    "dev": "nodemon index"
+  },
+  "author": "Nirmit Ghughu",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.17.3",
+    "moment": "^2.29.1",
+    "mongoose": "^6.2.6",
+    "uuid": "^8.3.2"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.15"
+  }
+}
