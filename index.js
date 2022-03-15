@@ -1,5 +1,6 @@
 const express = require('express');
 const path = require('path');
+const cors = require('cors')
 const chat = require('./message')
 const mongoose = require('mongoose')
 mongoose.connect('mongodb+srv://Itsme:nirmit2212@cluster0.j6ww2.mongodb.net/myFirstDatabase?retryWrites=true&w=majority')
@@ -9,6 +10,7 @@ const app= express();
 //Body parser
 app.use(express.json());
 app.use(express.urlencoded( { extended : false }));
+app.use(cors())
 
 
 app.post('/', async(req,res)=> {
