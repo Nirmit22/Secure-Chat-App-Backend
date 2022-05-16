@@ -5,7 +5,9 @@ const chatuserschema = new mongoose.Schema({
     chatname: String,
     userids: Array,
     admins: Array,
-    date: {type: Object , default: new Date()}
+    date: {type: Object , default: new Date()},
+    lastmessage: String,
+    lastmessagetime: Object
 })
 
 const model = mongoose.model('chatusersmodel', chatuserschema)

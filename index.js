@@ -6,6 +6,8 @@ const user = require('./userdb')
 const chatusers = require('./chatusersdb')
 const mongoose = require('mongoose')
 const jwt = require('jsonwebtoken')
+const { v4: uuidv4 } = require('uuid');
+//const uuidv4 = require('uuid/v4')
 mongoose.connect('mongodb+srv://Itsme:nirmit2212@cluster0.j6ww2.mongodb.net/myFirstDatabase?retryWrites=true&w=majority')
 const app = express();
 
@@ -44,7 +46,29 @@ app.get('/userchats', authenticateToken, async(req,res)=>{
     res.end()
 } )
 
+app.get('/allusers', async(req,res)=>{
+    users = await user.find({},{email:1,_id:0})
+    // var emails = [];
+    // users.forEach(element=>{
+    //     emails.push(element.email)
+    // })
+    res.json(users)
+})
+
 app.post('/createchat', authenticateToken, async(req,res)=>{
+    req.body.chatid = uuidv4()
+    req.body.userids.push(req.user.email)
+    const record = req.body;
+    console.log(record);
+    const response = await chatusers.create(record);
+
+    response.userids.forEach(async(element) => {
+        console.log(element)
+        await user.updateOne({email : element}, { $push:{"chats": req.body.chatid} })
+        
+    });
+    //res.send("ok");
+    res.end()
     
 
 })
